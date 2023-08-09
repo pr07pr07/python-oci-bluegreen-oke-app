@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: sample-oke-bg-app
   name: sample-oke-bg-app-deployment
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: sample-oke-bg-app
-  replicas: 3
   template:
     metadata:
       labels:
         app: sample-oke-bg-app
     spec:
       containers:
-      - name: sample-oke-bg-app
-        image: ams.ocir.io/axh1wuvhagpg/oci-bluegreen-oke-poc:${BUILDRUN_HASH}
-        imagePullPolicy: Always
+      - image: ams.ocir.io/axh1wuvhagpg/oci-bluegreen-oke-poc:${BUILDRUN_HASH}
+        imagePullPolicy: Always 
+        name: sample-oke-bg-app
         ports:
         - containerPort: 80
           protocol: TCP
@@ -32,3 +34,4 @@ spec:
                   fieldPath: metadata.namespace
       imagePullSecrets:
       - name: ocir-secret-prathap
+      
