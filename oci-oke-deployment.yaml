@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - image: ams.ocir.io/axh1wuvhagpg/oci-bluegreen-oke-poc:${BUILDRUN_HASH}
-        imagePullPolicy: Always 
+        #imagePullPolicy: Always 
         name: sample-oke-bg-app
         ports:
-        - containerPort: 80
-          protocol: TCP
+          - containerPort: 80
+            protocol: TCP
           livenessProbe:
             exec:
               command:
