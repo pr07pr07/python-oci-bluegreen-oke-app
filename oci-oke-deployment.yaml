@@ -21,13 +21,13 @@ spec:
         ports:
           - containerPort: 80
             protocol: TCP
-          livenessProbe:
-            exec:
-              command:
-              - cat
-            initialDelaySeconds: 5
-            periodSeconds: 5
-          env:
+        livenessProbe:
+          exec:
+            command:
+            - cat
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        env:
             - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
